@@ -1,0 +1,33 @@
+<script type="text/javascript">
+      RED.nodes.registerType('chargebox-rpc-configuration', {
+        category: 'config',
+        defaults: {
+          username: { required: true,  value: 'rpc', },
+          password: { required: true, value: 'password', },
+        },
+        credentials: {
+          username: { type: "text" },
+          password: { type: "password" }
+        },
+        inputs: 0,
+        outputs: 0,
+        label: function () {
+          return this.username ? this.username : 'RPC Configuration';
+        },
+      });
+  </script>
+  
+  <script type="text/x-red" data-template-name="chargebox-rpc-configuration">
+    <div class="form-row">
+      <label for="node-config-input-username"><i class="fa fa-train"></i> Username</label>
+      <input id="node-config-input-username" type="text" />
+    </div>
+    <div class="form-row">
+      <label for="node-config-input-password"><i class="fa fa-train"></i> Password</label>
+      <input id="node-config-input-password" type="password" />
+    </div>
+  </script>
+  
+  <script type="text/x-red" data-help-name="chargebox-rpc-configuration">
+    <p>Configuration parameters to talk to a chargebox</p>
+  </script>

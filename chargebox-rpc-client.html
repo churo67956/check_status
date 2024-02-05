@@ -1,0 +1,64 @@
+<script type="text/x-red" data-template-name="chargebox-rpc-client">
+    <div class="form-row">
+      <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+      <input type="text" id="node-input-name"/>
+    </div>
+    <div class="form-row">
+      <label for="node-input-charger"><i class="fa fa-tag"></i> ChargeBox</label>
+      <input type="text" id="node-input-charger"/>
+    </div>
+    <div class="form-row">
+      <label for="node-input-configuration"><i class="fa fa-bookmark"></i> Account</label>
+      <input type="text" id="node-input-configuration" />
+    </div>
+  </script>
+
+  <script type="text/javascript">
+    (function () {
+      RED.nodes.registerType("chargebox-rpc-client", {
+        category: "network",
+        defaults: {
+          name: { required: false, value: "" },
+          charger: { required: true, value: "192.168.1.33:8080",validate:RED.validators.regex(/^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)(:[0-9]{1,5})?$/) },
+          configuration: { type: "chargebox-rpc-configuration", required: true },
+          outputs: { value: 1 },
+        },
+        color: "#F3B567",
+        inputs: 1,
+        outputs: 1,
+        icon: "feed.svg",
+        label: function ()  {
+          return this.name || this.charger || "chargebox-rpc-client";
+        },
+        paletteLabel: "Ingeteam Chargebox RPC Client",
+      });
+    })();
+  </script>
+  
+  <script type="text/markdown" data-help-name="chargebox-rpc-client">
+    Simple RPC client for Ingeteam ChargeBox.
+  
+    ### Inputs
+  
+    : topic (string) : the command of the message to send (see below)
+  
+    ### Outputs
+  
+    1. Command response
+       : payload (object) : the response from the
+  
+    ### Details
+  
+    Configure the node with username/password and a Charger ID ("EH000000").
+    Send the your selected command as the topic into the node.
+    Implemented commands that may be sent as topic, are:
+  
+    - `login`
+    - `refresh_token`
+    - `charger`
+    - `charger_details`
+    - `charger_state`
+    - `charger_site`
+    - `charger_session_latest`
+    - `charger_session_ongoing`
+  </script>

@@ -1,0 +1,13 @@
+{
+  "name": "chargebox_settings",
+  "version": "1.0.0",
+  "description": "chargebox settings",
+  "author": "Erik Churo",
+  "node-red": {
+    "nodes": {
+      "chargebox_configuration": "chargebox_rpc_client/chargebox-rpc-configuration.js",
+      "chargebox_rpc_client": "chargebox-rpc-client.js"
+    }
+  },
+  "license": "ISC"
+}
